@@ -1,5 +1,5 @@
 from PySide6.QtCore import QThread, Signal, QTimer
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QPushButton, QLabel, QScrollArea, QFileDialog
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QPushButton, QLabel, QScrollArea, QFileDialog, QLineEdit
 
 from models.bertTurkishBased.bert_keyword import extract_keywords
 
@@ -7,21 +7,22 @@ from models.bertTurkishBased.bert_keyword import extract_keywords
 class KeywordExtractionWorker(QThread):
     extraction_complete = Signal(str)
 
-    def __init__(self, text=None, file_path=None):
+    def __init__(self, text=None, file_path=None, num_keywords=5):
         super().__init__()
         self.text = text
         self.file_path = file_path
+        self.num_keywords = num_keywords
 
     def run(self):
         result = None
         if self.text:
             print("self.text: " + self.text)
-            result = extract_keywords(self.text)
+            result = extract_keywords(self.text,self.num_keywords)
         elif self.file_path:
             with open(self.file_path, 'r', encoding='utf-8') as file:
                 self.text = file.read()
                 print(self.text)
-        result = extract_keywords(self.text)
+        result = extract_keywords(self.text, self.num_keywords)
         self.extraction_complete.emit(result)
 
 
@@ -32,6 +33,7 @@ class KeywordExtractionComponent(QWidget):
         self.file_path = None
         self.result_label = None
         self.summarize_button = None
+        self.num_keywords_edit = None
         self.text_edit = None
         self.initUI()
         self.worker = None
@@ -44,6 +46,10 @@ class KeywordExtractionComponent(QWidget):
         self.text_edit = QTextEdit(self)
         self.text_edit.setFixedHeight(200)
         layout.addWidget(self.text_edit)
+
+        self.num_keywords_edit = QLineEdit(self)
+        self.num_keywords_edit.setPlaceholderText("Enter number of keywords")
+        layout.addWidget(self.num_keywords_edit)
 
         self.select_button = QPushButton('Select Text File', self)
         self.select_button.clicked.connect(self.select_file)
@@ -66,7 +72,7 @@ class KeywordExtractionComponent(QWidget):
     def startProcessingAnimation(self):
         self.dot_count = 0
         self.timer.timeout.connect(self.updateProcessingText)
-        self.timer.start(500)  # Güncelleme aralığı (ms)
+        self.timer.start(500)
 
     def stopProcessingAnimation(self):
         self.timer.stop()
