@@ -9,6 +9,8 @@ from ui.components.UI_speechToText import SpeechToTextComponent
 from ui.components.UI_summarization import SummarizationComponent
 from ui.components.UI_imageToText import ImageToTextComponent
 from ui.components.UI_keywordExtraction import KeywordExtractionComponent
+from components.UI_chatbot import ChatbotComponent
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -16,6 +18,7 @@ class MainWindow(QMainWindow):
         self.components = [("Sentiment Analysis", SentimentAnalysisComponent()),
                            ("Summarization", SummarizationComponent()),
                            ("Keyword Extraction", KeywordExtractionComponent()),
+                           ("Chatbot", ChatbotComponent()),
                            ("Speech To Text", SpeechToTextComponent()),
                            ("Image To Text", ImageToTextComponent())]
         self.welcome_screen = WelcomeScreen()
