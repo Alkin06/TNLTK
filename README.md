@@ -1,4 +1,4 @@
-# TNLTK
+# TNLTK (Turkish Natural Language Toolkit)
 
 This project combines six different NLP models into a single comprehensive tool. The models included in this toolbox are:
 
