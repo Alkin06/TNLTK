@@ -8,23 +8,14 @@ from ui.components.UI_sentimentAnalysis import SentimentAnalysisComponent
 from ui.components.UI_speechToText import SpeechToTextComponent
 from ui.components.UI_summarization import SummarizationComponent
 from ui.components.UI_imageToText import ImageToTextComponent
-
-
-# TODO: Burası birazcık daha güzelleşbilir. Sol listenin genişliği küçültülüp sağdaki componentlerin genişliği arttırılabilir.
-# TODO: Ayrıca sağdaki eklenen componentlerin kendi sınıfları içerisinde bilgi de verelim. ortalama başarı, kullanılan model vs.
-# TODO: Yazı boyutu büyütülüp daha okunabilir hale getirilebilir, font değiştirilebilir. Arka plan rengi değiştirilebilir ve modellere resim eklenebilir.
-# TODO: Git açılacak ve ilk commit
-
-# TODO: Model_speechToText.py'ı da aslında models içinden alabiliriz artık gibi geliyor. os.chdir kullanarak onu da dışarı alabilirsek daha düzgün bir structure oluşturabiliriz.
-# TODO: Tüm componentler için de sayfa tasarla düzgün, thread kullanarak bilgilerini içeren sayfalar.
-# TODO: Makaleye bak. makalede değişecek yerler nereler bi bakalım. araştırmaya gerek yok zaten. sadece düzenleme ve bu resultsları ekleme işi var.
-# TODO: şuan tüm modeller en başta direkt memorye yükleniyor bunu ortadan kaldırmak lazım. sadece seçilen model yüklensin. başkası seçildiğinde diğerleri de silinsin. (?)
+from ui.components.UI_keywordExtraction import KeywordExtractionComponent
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.components = [("Sentiment Analysis", SentimentAnalysisComponent()),
                            ("Summarization", SummarizationComponent()),
+                           ("Keyword Extraction", KeywordExtractionComponent()),
                            ("Speech To Text", SpeechToTextComponent()),
                            ("Image To Text", ImageToTextComponent())]
         self.welcome_screen = WelcomeScreen()

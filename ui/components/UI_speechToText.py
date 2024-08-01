@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel, QFileDialog, QProgressBar
 
-from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtCore import Qt, QThread, Signal, QTimer
 import sys
 
 sys.path.append('../../models/TurkicASR/turkic_languages_model')
@@ -22,6 +22,8 @@ class SpeechToTextWorker(QThread):
 class SpeechToTextComponent(QWidget):
     def __init__(self):
         super().__init__()
+        self.dot_count = 0
+        self.timer = QTimer()
         self.worker = None
         self.initUI()
 
@@ -68,9 +70,34 @@ class SpeechToTextComponent(QWidget):
 
         self.result_label = QLabel("Recognized Text will appear here")
         self.result_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.result_label.setStyleSheet("""
+                            QLabel {
+                                font-size: 16px;
+                                color: #1C2833;
+                                padding: 10px;
+                                border: 1px solid #B3B6B7;
+                                border-radius: 5px;
+                                background-color: #F2F4F4;
+                            }
+                        """)
+        self.result_label.setWordWrap(True)
         layout.addWidget(self.result_label)
 
         self.setLayout(layout)
+
+    def startProcessingAnimation(self):
+        self.dot_count = 0
+        self.timer.timeout.connect(self.updateProcessingText)
+        self.timer.start(500)  # Güncelleme aralığı (ms)
+
+    def stopProcessingAnimation(self):
+        self.timer.stop()
+        # self.result_label.setText("Processing Complete")
+
+    def updateProcessingText(self):
+        self.dot_count = (self.dot_count + 1) % 4  # 0, 1, 2, 3 döngüsü
+        dots = '.' * self.dot_count
+        self.result_label.setText(f"Processing{dots}")
 
     def selectAudioFile(self):
         file_dialog = QFileDialog()
@@ -78,6 +105,8 @@ class SpeechToTextComponent(QWidget):
         if file_path:
             self.worker = SpeechToTextWorker(file_path)
             self.worker.recognition_complete.connect(self.displayRecognizedText)
+            self.worker.started.connect(self.startProcessingAnimation)
+            self.worker.finished.connect(self.stopProcessingAnimation)
             self.worker.start()
 
     def displayRecognizedText(self, text):

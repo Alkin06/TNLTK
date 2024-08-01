@@ -1,11 +1,11 @@
 from PySide6.QtCore import QThread, Signal, QTimer
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QPushButton, QLabel, QScrollArea, QFileDialog
 
-from models.bertTurkishBased.bert_summarization import extractive_summary
+from models.bertTurkishBased.bert_keyword import extract_keywords
 
 
-class SummarizationWorker(QThread):
-    summarization_complete = Signal(str)
+class KeywordExtractionWorker(QThread):
+    extraction_complete = Signal(str)
 
     def __init__(self, text=None, file_path=None):
         super().__init__()
@@ -16,16 +16,16 @@ class SummarizationWorker(QThread):
         result = None
         if self.text:
             print("self.text: " + self.text)
-            result = extractive_summary(self.text)
+            result = extract_keywords(self.text)
         elif self.file_path:
             with open(self.file_path, 'r', encoding='utf-8') as file:
                 self.text = file.read()
                 print(self.text)
-        result = extractive_summary(self.text)
-        self.summarization_complete.emit(result)
+        result = extract_keywords(self.text)
+        self.extraction_complete.emit(result)
 
 
-class SummarizationComponent(QWidget):
+class KeywordExtractionComponent(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -49,8 +49,8 @@ class SummarizationComponent(QWidget):
         self.select_button.clicked.connect(self.select_file)
         layout.addWidget(self.select_button)
 
-        self.summarize_button = QPushButton('Summarize', self)
-        self.summarize_button.clicked.connect(self.summarize_text)
+        self.summarize_button = QPushButton('Extract', self)
+        self.summarize_button.clicked.connect(self.extractKeywords)
         layout.addWidget(self.summarize_button)
 
         self.result_area = QScrollArea(self)
@@ -82,20 +82,25 @@ class SummarizationComponent(QWidget):
         if file_path:
             self.file_path = file_path
 
-    def summarize_text(self):
+    def extractKeywords(self):
         input_text = self.text_edit.toPlainText()
         if input_text != "":
-            self.worker = SummarizationWorker(text=input_text)
+            self.worker = KeywordExtractionWorker(text=input_text)
         elif self.file_path:
-            self.worker = SummarizationWorker(file_path=self.file_path)
+            self.worker = KeywordExtractionWorker(file_path=self.file_path)
         else:
-            self.result_label.setText('No text or file selected')
+            self.result_label.setText('No text or file selecteddddddddddd')
             return
 
-        self.worker.summarization_complete.connect(self.display_result)
+        self.worker.extraction_complete.connect(self.display_result)
         self.worker.started.connect(self.startProcessingAnimation)
         self.worker.finished.connect(self.stopProcessingAnimation)
         self.worker.start()
 
     def display_result(self, result):
-        self.result_label.setText(f'Result: {result}')
+        print("display_result: " + result)
+        keywords = result.split(',')
+        formatted_result = "Result:\n"
+        for idx, keyword in enumerate(keywords, 1):
+            formatted_result += f"{idx}. {keyword.strip()}\n"
+        self.result_label.setText(formatted_result)
