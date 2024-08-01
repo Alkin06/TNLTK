@@ -92,16 +92,14 @@ To use TNLTK, you can run the provided scripts to reach GUI. Below are examples 
 ### Image to Text
 
 - Open the Image to Text tab in TNLTK.
-- Upload the image containing text.
-- Click the "Convert" button to get the text from the image.
+- Upload the image containing text to get the text from the image.
 
 ![Image to Text GUI](Soon)
 
 ### Speech to Text
 
 - Open the Speech to Text tab in TNLTK.
-- Upload the audio file.
-- Click the "Transcribe" button to get the text from the speech.
+- Upload the audio file to get the text from the speech.
 
 ![Speech to Text GUI](Soon)
 
