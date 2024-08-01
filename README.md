@@ -63,7 +63,6 @@ To use TNLTK, you can run the provided scripts to reach GUI. Below are examples 
 - Enter the text or select the text file you want to analyze.
 - Click the "Analyze" button to get the sentiment of the text.
 
-![Sentiment Analysis GUI](Soon)
 
 ### Keyword Extraction
 
@@ -71,7 +70,6 @@ To use TNLTK, you can run the provided scripts to reach GUI. Below are examples 
 - Enter the or select the text file text from which you want to extract keywords.
 - Click the "Extract" button to get the keywords.
 
-![Keyword Extraction GUI](Soon)
 
 ### Extractive Summarization
 
@@ -79,7 +77,6 @@ To use TNLTK, you can run the provided scripts to reach GUI. Below are examples 
 - Enter the text or select the text file you want to summarize.
 - Click the "Summarize" button to get the summary.
 
-![Extractive Summarization GUI](Soon)
 
 ### Chatbot
 
@@ -87,21 +84,18 @@ To use TNLTK, you can run the provided scripts to reach GUI. Below are examples 
 - Enter your message in the input field.
 - Click the "Send" button to interact with the chatbot.
 
-![Chatbot GUI](Soon)
 
 ### Image to Text
 
 - Open the Image to Text tab in TNLTK.
 - Upload the image containing text to get the text from the image.
 
-![Image to Text GUI](Soon)
 
 ### Speech to Text
 
 - Open the Speech to Text tab in TNLTK.
 - Upload the audio file to get the text from the speech.
 
-![Speech to Text GUI](Soon)
 
 ## License
 
