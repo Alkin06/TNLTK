@@ -53,7 +53,65 @@ To get started with TNLTK, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
-
 ## Usage
 
 To use TNLTK, you can run the provided scripts to reach GUI. Below are examples of how to use each model.
+
+### Sentiment Analysis
+
+- Open the Sentiment Analysis tab in TNLTK.
+- Enter the text or select the text file you want to analyze.
+- Click the "Analyze" button to get the sentiment of the text.
+
+![Sentiment Analysis GUI](Soon)
+
+### Keyword Extraction
+
+- Open the Keyword Extraction tab in TNLTK.
+- Enter the or select the text file text from which you want to extract keywords.
+- Click the "Extract" button to get the keywords.
+
+![Keyword Extraction GUI](Soon)
+
+### Extractive Summarization
+
+- Open the Extractive Summarization tab in TNLTK.
+- Enter the text or select the text file you want to summarize.
+- Click the "Summarize" button to get the summary.
+
+![Extractive Summarization GUI](Soon)
+
+### Chatbot
+
+- Open the Chatbot tab in TNLTK.
+- Enter your message in the input field.
+- Click the "Send" button to interact with the chatbot.
+
+![Chatbot GUI](Soon)
+
+### Image to Text
+
+- Open the Image to Text tab in TNLTK.
+- Upload the image containing text.
+- Click the "Convert" button to get the text from the image.
+
+![Image to Text GUI](Soon)
+
+### Speech to Text
+
+- Open the Speech to Text tab in TNLTK.
+- Upload the audio file.
+- Click the "Transcribe" button to get the text from the speech.
+
+![Speech to Text GUI](Soon)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- **BERTurk** for providing a robust Turkish language model.
+- **Kanarya AI** for the chatbot model.
+- **DonutOCR** for image to text conversion.
+- **TurkicASR** for speech to text conversion.
