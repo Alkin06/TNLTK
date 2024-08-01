@@ -90,10 +90,11 @@ class KeywordExtractionComponent(QWidget):
 
     def extractKeywords(self):
         input_text = self.text_edit.toPlainText()
+        num_keywords = int(self.num_keywords_edit.text())
         if input_text != "":
-            self.worker = KeywordExtractionWorker(text=input_text)
+            self.worker = KeywordExtractionWorker(text=input_text, num_keywords=num_keywords)
         elif self.file_path:
-            self.worker = KeywordExtractionWorker(file_path=self.file_path)
+            self.worker = KeywordExtractionWorker(file_path=self.file_path, num_keywords=num_keywords)
         else:
             self.result_label.setText('No text or file selecteddddddddddd')
             return

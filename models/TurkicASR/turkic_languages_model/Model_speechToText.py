@@ -40,7 +40,7 @@ def recognize(wavfile, device, speech2text):
 
 def main(wav_file):
     current_directory = os.getcwd()
-    relative_path = "../models/TurkicASR/turkic_languages_model/"
+    relative_path = "../TNLTK/models/TurkicASR/turkic_languages_model/"
     absolute_path = os.path.abspath(relative_path)
     os.chdir(absolute_path)
     sys.path.append(absolute_path)
@@ -57,7 +57,6 @@ def main(wav_file):
         lm_file = lm_model_path + "/valid.loss.ave_10best.pth"
         device = "cuda" if torch.cuda.is_available() else "cpu"
 
-        device = "cpu"
 
         speech2text = Speech2Text(
             asr_train_config=train_config,

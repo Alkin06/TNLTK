@@ -23,7 +23,7 @@ class WelcomeScreen(QWidget):
         info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         # PyPI site button
-        pypi_button = QPushButton("Visit our PyPI site")
+        pypi_button = QPushButton("Visit our GitHub page")
         pypi_button.setFont(QFont('Arial', 14))
         pypi_button.clicked.connect(self.openPyPISite)
 
@@ -46,7 +46,7 @@ class WelcomeScreen(QWidget):
         self.setLayout(layout)
 
     def openPyPISite(self):
-        QDesktopServices.openUrl(QUrl("https://pypi.org"))
+        QDesktopServices.openUrl(QUrl("https://github.com/Alkin06/TNLTK"))
 
     def openPaperPDF(self):
         QDesktopServices.openUrl(QUrl.fromLocalFile("../resources/FinalReport.pdf"))

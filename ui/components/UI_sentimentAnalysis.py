@@ -21,6 +21,7 @@ class SentimentAnalysisWorker(QThread):
                 self.text = file.read()
                 print(self.text)
         result = predict_sentiment(self.text)
+        print(result)
         self.analysis_complete.emit(result)
 
 

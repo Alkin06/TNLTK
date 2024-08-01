@@ -38,7 +38,6 @@ class SpeechToTextComponent(QWidget):
             "<h3>Model Info</h3>"
             "<ul>"
             "<li><b>Model:</b> TurkicASR</li>"
-            "<li><b>Average Accuracy:</b> 95%</li>"
             "<li><b>Pipeline:</b>Pre-processing + Turkic Languages Model</li>"
             "<li><b>Supports:</b> MP3, WAV</li>"
             "</ul>"

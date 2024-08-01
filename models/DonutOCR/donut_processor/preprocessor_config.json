@@ -1,4 +1,22 @@
 {
+  "_valid_processor_keys": [
+    "images",
+    "do_resize",
+    "size",
+    "resample",
+    "do_thumbnail",
+    "do_align_long_axis",
+    "do_pad",
+    "random_padding",
+    "do_rescale",
+    "rescale_factor",
+    "do_normalize",
+    "image_mean",
+    "image_std",
+    "return_tensors",
+    "data_format",
+    "input_data_format"
+  ],
   "do_align_long_axis": false,
   "do_normalize": true,
   "do_pad": true,

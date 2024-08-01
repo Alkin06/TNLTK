@@ -58,7 +58,6 @@ class ImageToTextComponent(QWidget):
             "<h3>Model Info</h3>"
             "<ul>"
             "<li><b>Model:</b> DonutOCR</li>"
-            "<li><b>Average Accuracy:</b> 95%</li>"
             "<li><b>Pipeline:</b> DonutProcessor + VisionEncoderDecoderModel</li>"
             "<li><b>Supports:</b> PNG, JPG</li>"
             "</ul>"

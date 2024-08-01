@@ -10,11 +10,11 @@ import re
 
 
 def loadModels():
-    processor = DonutProcessor.from_pretrained("./donut_processor")
-    model = VisionEncoderDecoderModel.from_pretrained("./donut_model")
+    processor = DonutProcessor.from_pretrained("./models/DonutOCR/donut_processor")
+    model = VisionEncoderDecoderModel.from_pretrained("./models/DonutOCR/donut_model")
 
-    translation_model = MarianMTModel.from_pretrained("./translation_model")
-    translation_tokenizer = MarianTokenizer.from_pretrained("./translation_tokenizer")
+    translation_model = MarianMTModel.from_pretrained("./models/DonutOCR/translation_model")
+    translation_tokenizer = MarianTokenizer.from_pretrained("./models/DonutOCR/translation_tokenizer")
     return processor, model, translation_model, translation_tokenizer
 
 
@@ -90,9 +90,9 @@ def move_files():
         os.makedirs(directory)
 
     project_files = [
-        "spellCheckerFiles/words.pkl",
-        "spellCheckerFiles/words_counted.pkl",
-        "spellCheckerFiles/words_alt.pkl"
+        "models/DonutOCR/spellCheckerFiles/words.pkl",
+        "models/DonutOCR/spellCheckerFiles/words_counted.pkl",
+        "models/DonutOCR/spellCheckerFiles/words_alt.pkl"
     ]
 
     for file_path in project_files:
@@ -107,10 +107,10 @@ def move_files():
 
 def main(image_path):
     # image_path = "img.png"
-    current_directory = os.getcwd()
-    relative_path = "../models/DonutOCR/"
-    absolute_path = os.path.abspath(relative_path)
-    os.chdir(absolute_path)
+    #current_directory = os.getcwd()
+    #relative_path = "models/DonutOCR/"
+    #absolute_path = os.path.abspath(relative_path)
+    #os.chdir(relative_path)
     processor, model, translation_model, translation_tokenizer = loadModels()
     result_text = process_image(image_path, processor, model)
 
@@ -124,10 +124,10 @@ def main(image_path):
     if not obj.is_turkish(cleaned_text):
         cleaned_text = translate_text(cleaned_text, translation_model, translation_tokenizer)
 
-    lwords = obj.list_words(cleaned_text)
+    #lwords = obj.list_words(cleaned_text)
     # print(obj.auto_correct(lwords))
-    spellCheckedText = obj.auto_correct(lwords)
-    result_string = ' '.join(spellCheckedText)
-    os.chdir(current_directory)
-    return result_string
+    #spellCheckedText = obj.auto_correct(lwords)
+    #result_string = ' '.join(spellCheckedText)
+    #os.chdir(current_directory)
+    return cleaned_text
 
